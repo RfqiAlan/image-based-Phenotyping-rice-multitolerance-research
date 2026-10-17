@@ -224,24 +224,24 @@ def plot_ablation_figure_publication(output_path="results/Figure10_Feature_Ablat
     using 1 uniform academic Navy Blue color, with Y-axis strictly bounded from 0.5 to 0.9.
     """
     subsets = [
-        'Colorimetry Only\n(Static, 4 traits)',
-        'Dynamic Delta (Δ) Only\n(Inter-stage, 14 traits)',
-        'Static Both\n(Morph + Color, 20 traits)',
-        'Morphology Only\n(Static, 16 traits)',
-        'All Combined\n(Static + Dynamic Δ, 34 traits)'
+        'Colorimetry Only\n(4 traits)',
+        'Dynamic Delta (Δ)\n(14 traits)',
+        'Static (Morph + Color)\n(20 traits)',
+        'Morphology Only\n(16 traits)',
+        'All Combined\n(34 traits)'
     ]
     means = [0.661, 0.720, 0.760, 0.764, 0.776]
     stds = [0.089, 0.092, 0.075, 0.092, 0.082]
     bar_color = '#2B547E'
 
-    fig, ax = plt.subplots(figsize=(9, 5.5), dpi=300)
+    fig, ax = plt.subplots(figsize=(9.5, 5.5), dpi=300)
     fig.patch.set_facecolor('white')
     ax.set_facecolor('white')
 
     x = np.arange(len(subsets))
     bars = ax.bar(x, means, yerr=stds, capsize=5,
                   color=bar_color, edgecolor='#15283b', linewidth=1.1,
-                  width=0.52, zorder=3,
+                  width=0.48, zorder=3,
                   error_kw={'elinewidth': 1.2, 'ecolor': '#15283b', 'capthick': 1.2})
 
     ax.grid(axis='y', linestyle=':', color='#d5dbdb', linewidth=0.8, zorder=0)
@@ -253,7 +253,7 @@ def plot_ablation_figure_publication(output_path="results/Figure10_Feature_Ablat
     ax.set_ylabel('Cross-Validated Macro F1-Score (Mean ± SD)', fontsize=11, fontweight='bold', color='#1c2833', labelpad=10)
     ax.tick_params(axis='y', labelsize=10, colors='#1c2833')
     ax.set_xticks(x)
-    ax.set_xticklabels(subsets, fontsize=9.5, fontweight='bold', color='#1c2833')
+    ax.set_xticklabels(subsets, fontsize=10, fontweight='bold', color='#1c2833')
 
     # White text inside the top of the bars to cleanly avoid colliding with error bars
     for bar, mean in zip(bars, means):
@@ -265,8 +265,8 @@ def plot_ablation_figure_publication(output_path="results/Figure10_Feature_Ablat
     ax.spines['left'].set_color('#1c2833')
     ax.spines['bottom'].set_color('#1c2833')
 
-    plt.title('Figure 10. Feature Ablation Benchmark Across Phenotypic Subsets (GBM, 25 Folds)',
-              fontsize=12, fontweight='bold', color='#1c2833', pad=15)
+    plt.title('Feature ablation benchmark across phenotypic subset',
+              fontsize=13, fontweight='bold', color='#1c2833', pad=15)
 
     plt.tight_layout()
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
